@@ -1,7 +1,5 @@
 const calculateBtn = document.getElementById("calculate-btn");
-let yeraInp = document.getElementById("year-input");
-let monthInp = document.getElementById("month-input");
-let dayInp = document.getElementById("day-input");
+let inp = document.getElementById("year-input");
 const para = document.getElementById("para");
 const date = new Date();
 let day = date.getDate();
@@ -9,25 +7,15 @@ let month = date.getMonth() + 1;
 let year = date.getFullYear();
 
 calculateBtn.addEventListener("click", () => {
-  let calculatedYear = year - yeraInp.value;
-  if (
-    ((month <= monthInp.value && day < dayInp.value) ||
-      month < monthInp.value) &&
-    monthInp.value < 13 &&
-    dayInp.value < 32
-  ) {
-    calculatedYear = year - yeraInp.value - 1;
-  } else if (
-    yeraInp.value >= year ||
-    yeraInp.value >= year ||
-    yeraInp.value <= 0 ||
-    monthInp.value <= 0 ||
-    dayInp.value > 31 ||
-    dayInp.value <= 0 ||
-    monthInp.value > 12
-  ) {
-    calculatedYear = "ERROR";
+  let kurac = inp.value.split("-");
+  let yearInp = parseInt(kurac[0]);
+  let monthInp = parseInt(kurac[1]);
+  let dayInp = parseInt(kurac[2]);
+  let calculatedYears = year - yearInp;
+  if (monthInp > month || (monthInp == month && dayInp > day)) {
+    calculatedYears = year - yearInp - 1;
+  } else if (yearInp > year || (yearInp == year && monthInp > month)) {
+    calculatedYears = 'retard :)';
   }
-
-  para.innerHTML = calculatedYear;
+  para.innerHTML = `Your are ${calculatedYears}`;
 });
