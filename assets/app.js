@@ -10,21 +10,21 @@ let year = date.getFullYear();
 
 calculateBtn.addEventListener("click", () => {
   let calculatedYear = year - yeraInp.value;
-  if (month < monthInp.value) {
-    calculatedYear = year - yeraInp.value - 1;
-  }
-  if (month <= monthInp.value && day < dayInp.value) {
+  if (
+    ((month <= monthInp.value && day < dayInp.value) ||
+      month < monthInp.value) &&
+    monthInp.value < 13 &&
+    dayInp.value < 32
+  ) {
     calculatedYear = year - yeraInp.value - 1;
   } else if (
-    yeraInp.value > year ||
-    dayInp.value > 31 ||
+    yeraInp.value >= year ||
+    yeraInp.value >= year ||
     yeraInp.value <= 0 ||
-    monthInp.value > 12 ||
-    monthInp.value < 0 ||
-    dayInp.value < 0 ||
-    yeraInp.value == "" ||
-    monthInp.value == "" ||
-    dayInp.value == ""
+    monthInp.value <= 0 ||
+    dayInp.value > 31 ||
+    dayInp.value <= 0 ||
+    monthInp.value > 12
   ) {
     calculatedYear = "ERROR";
   }
