@@ -10,24 +10,23 @@ let year = date.getFullYear();
 
 calculateBtn.addEventListener("click", () => {
   let calculatedYear = year - yeraInp.value;
-  if (month <= monthInp.value && day < dayInp.value) {
+  if (month < monthInp.value) {
     calculatedYear = year - yeraInp.value - 1;
-  }
-  para.innerHTML = calculatedYear;
-});
-
-calculateBtn.addEventListener("click", () => {
-  if (
+  } else if (month <= monthInp.value && day < dayInp.value) {
+    calculatedYear = year - yeraInp.value - 1;
+  } else if (
     year < yeraInp.value ||
     yeraInp.value < 0 ||
     monthInp.value > 13 ||
     monthInp.value < 0 ||
     dayInp.value > 31 ||
     dayInp.value < 0 ||
-    yeraInp.value == '' ||
-    monthInp.value == '' ||
-    dayInp.value == ''
+    yeraInp.value == "" ||
+    monthInp.value == "" ||
+    dayInp.value == ""
   ) {
-    para.innerHTML = "Error";
+    calculatedYear = "ERROR";
   }
+
+  para.innerHTML = calculatedYear;
 });
